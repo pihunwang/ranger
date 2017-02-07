@@ -1,0 +1,45 @@
+$textcolor-pri: #222;
+$textcolor-sec: #555;
+$textcolor-ass: #aaa;
+
+$textsize-assist: 12px;
+$textsize-content-small: 13px;
+$textsize-content: 14px;
+$textsize-title-small: 16px;
+$textsize-title: 18px;
+$textsize-title-big: 20px;
+
+$divide-color: #ccc;
+$background-color: #eee;
+$actionbar-color: #281;
+
+$blue-primary: rgb(77, 179, 255);
+
+.text-assist {
+  font-size: $textsize-assist;
+  color: $textcolor-ass;
+  line-height: 1;
+}
+
+.el-table {
+  .cell {
+    font-size: 12px;
+    line-height: 1;
+    padding-left: 6px;
+    padding-right: 3px;
+  }
+  td {
+    height: 32px;
+  }
+}
+
+.el-table__fixed, .el-table__fixed-right {
+  border-left: 1px solid #e0e6ed;
+  border-right: 1px solid #e0e6ed;
+  box-shadow: none;
+}
+
+.el-input-group__prepend .input-layout {
+  background: transparent;
+  border: hidden;
+}

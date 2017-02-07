@@ -1,0 +1,93 @@
+@import "./base-value";
+
+body {
+  margin: 0;
+  background: $background-color;
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+  font-size: 14px;
+}
+
+#app {
+}
+
+/*设置所有盒子大小计算边框内*/
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+/*消除输入框的阴影和边框*/
+input, textarea, select {
+  appearance: none;
+  outline: none;
+  border: none;
+}
+
+/*消除链接样式*/
+a,
+a:focus,
+a:hover,
+a:visited {
+  text-decoration: none;
+}
+
+@mixin box-border-shadow(){
+  border: solid 1px $divide-color;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+}
+
+
+
+.el-input {
+  width: 300px;
+}
+
+.el-table .cell {
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+/*  */
+.do-data-table {
+  padding: 8px;
+
+  .operate {
+    display: flex;
+    .child {
+      margin-right: 16px;
+    }
+    .search {
+      .el-select .el-input {
+        width: 108px;
+      }
+    }
+    .order {
+      .el-input {
+        width: 128px;
+      }
+    }
+    .add {
+
+    }
+  }
+
+  .table {
+    width: 100%;
+    margin-top: 10px;
+  }
+  .pagenation {
+    margin-top: 16px;
+    text-align: center;
+  }
+}
+
+.header-bar {
+  font-size: $textsize-content;
+  padding: 8px;
+  background: #eee
+}
