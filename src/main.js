@@ -14,7 +14,8 @@ router.beforeEach((to, from, next) => {
     if (to.name === 'main') {
         next()
     } else {
-        next({name: 'main'})
+        //next({name: 'main'})
+        next()
     }
 })
 
