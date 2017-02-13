@@ -192,4 +192,8 @@
         line-height: 1.6em;
         font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
     }
+
+    .CodeMirror {
+        border-radius: 5px;
+    }
 </style>

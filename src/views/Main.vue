@@ -4,8 +4,8 @@
             <img class="logo" src="../assets/images/logo.png" @click="goToEditor">
             <div class="title" @click="goToEditor">Java在线编译器</div>
             <div id="empty"></div>
-            <div id="username">欢迎您，{{account.user.name}}</div>
-            <el-button id="logoff" size="small" @click="logOff" type="primary">退出登陆</el-button>
+            <div id="username">欢迎您，{{account.user_name}}</div>
+            <el-button id="logoff" size="small" @click="logInOff" type="primary">{{loginoff}}</el-button>
         </div>
         <div class="bottomconetent">
             <router-view></router-view>
@@ -22,24 +22,49 @@
     export default{
         data(){
             return {
-                msg: 'hello vue'
+                msg: 'hello vue',
+                loginoff: '登录系统'
             }
         },
         computed: {
             account(){
-                return {
-                    user: {
-                        name: '西瓜'
+                let acc = this.$store.state.account
+                if (acc) {
+                    this.loginoff = '退出登录'
+                    return acc
+                } else {
+                    this.loginoff = '登录系统'
+                    return {
+                        user: {
+                            name: '西瓜'
+                        }
                     }
                 }
             }
         },
         methods: {
-            goToEditor:function(){
-                this.$router.push({ name: "editor" })
+            goToEditor: function () {
+                this.$router.replace({name: "editor"})
             },
-            logOff: function () {
-
+            logInOff: function () {
+                const acc = this.$storage.load('account')
+                if (acc) {
+                    this.$confirm('确定要退出登录?', '提示', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        type: 'info',
+                    }).then(
+                        () => {
+                            this.$storage.clear()
+                            this.$store.commit('deleteAccount')
+                        },
+                        () => {
+                        }
+                    )
+                    this.$storage.remove('account')
+                } else {
+                    this.$router.replace({name: "login"})
+                }
             }
         }
     }
@@ -62,7 +87,7 @@
             margin: 0 0px 5px 20px;
             height: 44px;
             width: 44px;
-            cursor:pointer;
+            cursor: pointer;
         }
 
         .title {
@@ -89,8 +114,6 @@
     }
 
     .bottomconetent {
-        padding-left: 200px;
-        padding-right: 200px;
         height: calc(100vh - 64px - 60px);
         background: lightgoldenrodyellow;
         overflow: scroll;

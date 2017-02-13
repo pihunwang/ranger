@@ -20,24 +20,37 @@
         },
         data(){
             return {
-                code: 'class Main{\n  int a = 10;\n}',
-                result: 'Helle World!',
+                code: 'public class Main {\n  public static void main(String[] args) {\n    System.out.println("Hello World!");\n  }\n}',
+                result: '',
                 submitting: false
             }
         },
         methods: {
             runCode: function () {
-                let request = this.$request.SourceCompiler(this.code, 2,'2Z2yegN')
+                const acc = this.$storage.load('account')
+                let uid = 1
+                if (acc) {
+                    uid = acc.uid
+                }
+                let request = this.$request.SourceCompiler(this.code, 2)
                 console.log(request)
                 this.submitting = true
                 request.execute().then(
-                    (succ)=>{
+                    (succ) => {
                         this.submitting = false
-                        console.log(succ.data)
+                        console.log(succ)
+                        this.result = succ.data
                     },
-                    (error)=>{
+                    (error) => {
                         this.submitting = false
-                        console.log(error.data)
+                        console.log(error)
+                        if (error.sn === 3001) {
+                            // 编译错误
+                            this.result = error.data
+                        } else {
+                            //未知错误
+                            this.result = error.data
+                        }
                     })
             },
         }
@@ -49,11 +62,13 @@
     @import "../../assets/style/global-style";
 
     .editorparent {
-        margin-top: 20px;
+        margin-top: 25px;
+        margin-left: 20px;
+        margin-right: 20px;
     }
 
     button {
-        margin-right: 10px;
+        margin-right: 20px;
         margin-top: 10px;
     }
 
@@ -69,6 +84,8 @@
         overflow: hidden;
         height: 165px;
         background: black;
+        margin-left: 20px;
+        margin-right: 20px;
     }
 
     .resultarea {

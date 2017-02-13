@@ -81,11 +81,10 @@ const requestFactory = {
         })
     },
     //code api
-    SourceCompiler(source, uid,token){
+    SourceCompiler(source, uid){
         return new Request('code/sourceCompiler', {
             source,
-            uid,
-            token
+            uid
         })
     }
 }
