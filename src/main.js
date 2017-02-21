@@ -25,16 +25,18 @@ const store = new Vuex.Store(vuexConfig)
 
 router.beforeEach((to, from, next) => {
     console.log('beforeEach')
-    if(to.name === 'editor'){
+    if (to.name === 'editor') {
         next()
-    }else if(to.name === 'login'){
-        if(Storage.storage.has('account')){
-            next({name:'editor'})
-        }else{
+    } else if (to.name === 'tutorial') {
+        next()
+    } else if (to.name === 'login') {
+        if (Storage.storage.has('account')) {
+            next({name: 'editor'})
+        } else {
             next()
         }
-    }else{
-        next({name:'editor'})
+    } else {
+        next({name: 'editor'})
     }
 })
 

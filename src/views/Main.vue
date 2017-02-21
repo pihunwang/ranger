@@ -3,8 +3,10 @@
         <div class="topbar">
             <img class="logo" src="../assets/images/logo.png" @click="goToEditor">
             <div class="title" @click="goToEditor">Java在线编译器</div>
+            <el-button id="logoff" size="large" @click="tutorial" type="text">Java基础教程</el-button>
             <div id="empty"></div>
-            <div id="username">欢迎您，{{account.user_name}}</div>
+            <div id="username">{{welcome}}{{account.user_name}}</div>
+            <el-button id="seeSource" size="large" @click="see" type="text" v-show="visibility">查看提交记录</el-button>
             <el-button id="logoff" size="small" @click="logInOff" type="primary">{{loginoff}}</el-button>
         </div>
         <div class="bottomconetent">
@@ -23,7 +25,9 @@
         data(){
             return {
                 msg: 'hello vue',
-                loginoff: '登录系统'
+                loginoff: '登录系统',
+                welcome: '欢迎您，',
+                visibility: false
             }
         },
         computed: {
@@ -31,14 +35,14 @@
                 let acc = this.$store.state.account
                 if (acc) {
                     this.loginoff = '退出登录'
+                    this.welcome = '欢迎您，'
+                    this.visibility = true
                     return acc
                 } else {
                     this.loginoff = '登录系统'
-                    return {
-                        user: {
-                            name: '西瓜'
-                        }
-                    }
+                    this.welcome = ''
+                    this.visibility = false
+                    return {}
                 }
             }
         },
@@ -65,6 +69,12 @@
                 } else {
                     this.$router.replace({name: "login"})
                 }
+            },
+            tutorial: function () {
+                this.$router.replace({name:"tutorial"})
+            },
+            see: function () {
+
             }
         }
     }
@@ -110,6 +120,10 @@
 
         #logoff {
             margin: 20px;
+        }
+
+        #seeSource {
+            margin-left: 20px;
         }
     }
 

@@ -38,12 +38,12 @@ function doHttpBase(url, params) {
 }
 
 function getToken() {
-    // if (!token) {
-    //     const acc = storage.storage.load('account')
-    //     if (acc) {
-    //         return JSON.parse(acc).token
-    //     }
-    // }
+    if (!token) {
+        const acc = storage.storage.load('account')
+        if (acc) {
+            return JSON.parse(acc).token
+        }
+    }
     return undefined
 }
 

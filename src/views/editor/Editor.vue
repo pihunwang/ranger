@@ -48,6 +48,7 @@
                             // 编译错误
                             this.result = error.data
                         } else {
+                            this.$doui.showErrorToast(this, error.tip)
                             //未知错误
                             this.result = error.data
                         }

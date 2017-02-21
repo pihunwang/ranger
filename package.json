@@ -31,6 +31,8 @@
     "vue-template-compiler": "^2.1.0",
     "webpack": "^2.2.0",
     "webpack-dev-server": "^2.2.0",
-    "codemirror": "^5.23.0"
+    "codemirror": "^5.23.0",
+    "marked": "^0.3.6",
+    "highlight.js": "^9.9.0"
   }
 }
