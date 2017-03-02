@@ -19,6 +19,7 @@
         </table>
         <div id="right">
             <div v-html="compiledMarkdown"></div>
+            <el-button id="tryIt" size="small" @click="toEditor" type="primary">去试试</el-button>
         </div>
     </div>
 </template>
@@ -45,65 +46,48 @@
         },
         data(){
             return {
-                article: '# hello\n # heihei \n## gao\n``` public class gao {\n print("ff"\n)\n}\nji```\n ## gao',
-                chapters: [
-                    {
-                        "chapter_name": "一、Java概述",
-                        "index": "1",
-                        "titles": [
-                            {
-                                "article_title": "Java语言概述",
-                                "parent_index": "1",
-                                "title_id": "1-1"
-                            },
-                            {
-                                "article_title": "Java虚拟机以及跨平台原理",
-                                "parent_index": "1",
-                                "title_id": "1-2"
-                            },
-                            {
-                                "article_title": "第一个Java程序示例",
-                                "parent_index": "1",
-                                "title_id": "1-3"
-                            }
-                        ]
-                    },
-                    {
-                        "chapter_name": "二、Java语法基础",
-                        "index": "2",
-                        "titles": [
-                            {
-                                "article_title": "Java数据类型以及变量的定义",
-                                "parent_index": "2",
-                                "title_id": "2-1"
-                            }
-                        ]
-                    },
-                    {
-                        "chapter_name": "三、Java类与对象",
-                        "index": "3",
-                        "titles": []
-                    }
-                ]
+                article: 'Hello world!',
+                chapters: []
             }
         },
         computed: {
             compiledMarkdown: function () {
-                return marked(this.article)
+                return marked(this.article, {sanitize: true})
             }
         },
         methods: {
             handleSelect(index) {
-                console.log(index)
+                this.$request.GetArticle(index).execute().then(
+                    (succ) => {
+                        this.article = succ.data.content
+                    },
+                    (error) => {
+                        this.$doui.showErrorToast(this, error.tip)
+                    })
+            },
+            toEditor(){
+                this.$router.replace({name: "editor"})
             }
+        }, created: function () {
+            // `this` 指向 vm 实例
+            this.$request.GetCatalog().execute().then(
+                (succ) => {
+                    this.chapters = succ.data
+                },
+                (error) => {
+                    this.$doui.showErrorToast(this, error.tip)
+                })
         }
     }
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
 
-    #menu {
+    #container{
         overflow: hidden;
+    }
+
+    #menu {
         width: 300px;
     }
 
@@ -127,6 +111,10 @@
         border-color: #000000;
         border-left-style: solid;
         border-width: 1px
+    }
+
+    #tryIt {
+        margin-top: 20px;
     }
 
 </style>

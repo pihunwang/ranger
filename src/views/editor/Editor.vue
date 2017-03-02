@@ -29,10 +29,10 @@
             runCode: function () {
                 const acc = this.$storage.load('account')
                 let uid = 1
-                if (acc) {
-                    uid = acc.uid
+                if (acc !== undefined) {
+                    uid = JSON.parse(acc).uid
                 }
-                let request = this.$request.SourceCompiler(this.code, 2)
+                let request = this.$request.SourceCompiler(this.code, uid)
                 console.log(request)
                 this.submitting = true
                 request.execute().then(

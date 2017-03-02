@@ -3,7 +3,7 @@
         <div class="topbar">
             <img class="logo" src="../assets/images/logo.png" @click="goToEditor">
             <div class="title" @click="goToEditor">Java在线编译器</div>
-            <el-button id="logoff" size="large" @click="tutorial" type="text">Java基础教程</el-button>
+            <el-button id="logoff" size="large" @click="tutorial" type="text">Java简明教程</el-button>
             <div id="empty"></div>
             <div id="username">{{welcome}}{{account.user_name}}</div>
             <el-button id="seeSource" size="large" @click="see" type="text" v-show="visibility">查看提交记录</el-button>
@@ -61,11 +61,11 @@
                         () => {
                             this.$storage.clear()
                             this.$store.commit('deleteAccount')
+                            this.$storage.remove('account')
                         },
                         () => {
                         }
                     )
-                    this.$storage.remove('account')
                 } else {
                     this.$router.replace({name: "login"})
                 }

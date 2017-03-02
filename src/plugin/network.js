@@ -67,7 +67,7 @@ class Request {
 }
 
 const requestFactory = {
-    //user api
+    // user api
     UserLogin(user_name, password){
         return new Request('user/UserLogin', {
             user_name,
@@ -80,11 +80,22 @@ const requestFactory = {
             password
         })
     },
-    //code api
+    // code api
     SourceCompiler(source, uid){
         return new Request('code/sourceCompiler', {
             source,
             uid
+        })
+    },
+    // article api
+    GetCatalog(){
+        return new Request('article/catalogListGet',{
+
+        })
+    },
+    GetArticle(title_id){
+        return new Request('article/articleGet',{
+            title_id
         })
     }
 }
