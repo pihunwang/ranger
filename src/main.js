@@ -29,6 +29,8 @@ router.beforeEach((to, from, next) => {
         next()
     } else if (to.name === 'tutorial') {
         next()
+    } else if (to.name === 'register') {
+        next()
     } else if (to.name === 'login') {
         if (Storage.storage.has('account')) {
             next({name: 'editor'})

@@ -7,7 +7,7 @@
             <div class="body">
                 <div class="login-box">
                     <div class="title">
-                        帐号登录
+                        新用户注册
                     </div>
                     <el-input v-model="username" style="margin-top: 20px">
                         <template slot="prepend">账 号</template>
@@ -20,11 +20,11 @@
                     <div>
                         <el-button type="primary" :disabled="!username || !password"
                                    style="width: 300px;margin-top: 35px"
-                                   @click="runLogin">登录
+                                   @click="runLogin">注册
                         </el-button>
                     </div>
                     <div>
-                        <el-button type="text" style="float:right;margin-top: 10px;" @click="doRegister">新用户注册</el-button>
+                        <el-button type="text" style="float:right;margin-top: 10px;" @click="doLogin">返回登录</el-button>
                     </div>
                 </div>
             </div>
@@ -54,22 +54,17 @@
 
         methods: {
             runLogin() {
-                this.$request.UserLogin(this.username, this.password).execute().then(
+                this.$request.UserAdd(this.username, this.password).execute().then(
                     (succ) => {
-                        this.$storage.save('account', succ.data)
-                        const account = new AccountDo(succ.data)
-                        this.$store.commit('setAccount', account)
-                        this.$router.replace({
-                            name: 'editor',
-                        })
+                        this.$doui.showSuccToast(this, '注册成功，请返回登录')
                     },
                     (error) => {
                         this.$doui.showErrorToast(this, error.tip)
                     })
             },
-            doRegister(){
+            doLogin(){
                 this.$router.replace({
-                    name: 'register',
+                    name: 'login',
                 })
             }
         },
@@ -86,7 +81,7 @@
     }
 
     .login_pictures_picture {
-        background-image: url('../../assets/images/dog.jpeg');
+        background-image: url('../../assets/images/wel.jpeg');
         height: 300px;
         width: 450px;
         background-repeat: no-repeat;

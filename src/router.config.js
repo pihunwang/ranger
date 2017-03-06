@@ -2,6 +2,7 @@ import Base from './Base.vue'
 import Main from './views/Main.vue'
 import Editor from './views/editor/Editor.vue'
 import Login from './views/login/Login.vue'
+import Register from './views/login/Register.vue'
 import Tutorial from './views/tutorial/Tutorial.vue'
 
 /**
@@ -28,6 +29,11 @@ export default {
                             path: 'login',
                             name: 'login',
                             component: Login
+                        },
+                        {
+                            path: 'register',
+                            name: 'register',
+                            component: Register
                         },
                         {
                             path: 'tutorial',

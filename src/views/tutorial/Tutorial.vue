@@ -19,7 +19,7 @@
         </table>
         <div id="right">
             <div v-html="compiledMarkdown"></div>
-            <el-button id="tryIt" size="small" @click="toEditor" type="primary">去试试</el-button>
+            <el-button id="tryIt" size="small" @click="toEditor" type="primary" v-show="tryBtn">去试试</el-button>
         </div>
     </div>
 </template>
@@ -27,6 +27,7 @@
 <script>
     import marked from 'marked'
     import highlight from 'highlight.js'
+    import 'highlight.js/styles/googlecode.css'
     marked.setOptions({
         renderer: new marked.Renderer(),
         gfm: true,
@@ -46,7 +47,8 @@
         },
         data(){
             return {
-                article: 'Hello world!',
+                article: '欢迎来到Java简明教程',
+                tryBtn: false,
                 chapters: []
             }
         },
@@ -60,6 +62,7 @@
                 this.$request.GetArticle(index).execute().then(
                     (succ) => {
                         this.article = succ.data.content
+                        this.tryBtn = true
                     },
                     (error) => {
                         this.$doui.showErrorToast(this, error.tip)
