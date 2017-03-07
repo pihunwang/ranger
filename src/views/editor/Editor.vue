@@ -53,7 +53,12 @@
                             this.result = error.data
                         }
                     })
-            },
+            }
+        },
+        created: function () {
+            if(this.$route.params.code){
+                this.code = this.$route.params.code
+            }
         }
     }
 </script>
@@ -94,6 +99,6 @@
         color: white;
         height: 100%;
         width: 100%;
-        overflow: scroll;
+        overflow: auto;
     }
 </style>

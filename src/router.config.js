@@ -4,6 +4,7 @@ import Editor from './views/editor/Editor.vue'
 import Login from './views/login/Login.vue'
 import Register from './views/login/Register.vue'
 import Tutorial from './views/tutorial/Tutorial.vue'
+import CommitRecord from './views/commitrecord/CommitRecord.vue'
 
 /**
  * Created by UKfire on 17/2/5.
@@ -39,6 +40,11 @@ export default {
                             path: 'tutorial',
                             name: 'tutorial',
                             component: Tutorial
+                        },
+                        {
+                            path: 'commitrecord',
+                            name: 'commitrecord',
+                            component: CommitRecord
                         }
                     ]
                 },

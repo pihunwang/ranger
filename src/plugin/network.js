@@ -87,6 +87,17 @@ const requestFactory = {
             uid
         })
     },
+    GetUserCode(uid){
+        return new Request('code/userCodeListGet',{
+            uid
+        })
+    },
+    RemoveUserCode(id,uid){
+        return new Request('code/userCodeRemove',{
+            id,
+            uid
+        })
+    },
     // article api
     GetCatalog(){
         return new Request('article/catalogListGet',{

@@ -71,7 +71,8 @@
             toEditor(){
                 this.$router.replace({name: "editor"})
             }
-        }, created: function () {
+        },
+        created: function () {
             // `this` 指向 vm 实例
             this.$request.GetCatalog().execute().then(
                 (succ) => {
@@ -96,7 +97,7 @@
 
     .el-menu-vertical-demo {
         height: calc(100vh - 64px - 60px);
-        overflow: scroll;
+        overflow: auto;
         background: transparent;
     }
 
@@ -104,7 +105,7 @@
         height: calc(100vh - 64px - 60px);
         padding-left: 20px;
         padding-right: 20px;
-        overflow: scroll;
+        overflow: auto;
     }
 
     #line {

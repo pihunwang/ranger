@@ -71,10 +71,10 @@
                 }
             },
             tutorial: function () {
-                this.$router.replace({name:"tutorial"})
+                this.$router.replace({name: "tutorial"})
             },
             see: function () {
-
+                this.$router.replace({name: "commitrecord"})
             }
         }
     }
@@ -130,7 +130,7 @@
     .bottomconetent {
         height: calc(100vh - 64px - 60px);
         background: lightgoldenrodyellow;
-        overflow: scroll;
+        overflow: auto;
     }
 
     .footer-new {
