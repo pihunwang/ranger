@@ -47,7 +47,7 @@
         },
         data(){
             return {
-                article: '欢迎来到Java简明教程',
+                article: '# 欢迎来到Java简明教程\n >**Java并没有没落，人们很快就会发现这一点** —— [Modern Java](https://github.com/winterbe/java8-tutorial)\n\n \n\nJava可以用来做很多事，例如进行移动端开发、后端开发等。本教程将带领你一步一步地认识Java语言的特性，通过简单明了的代码示例，你将会学习到如何使用Java进行编程。\n\n 点击左侧的章节列表你可以从上至下依次进行学习，并可以随时点击左上角Icon切换到在线编译器进行实践。\n\n ',
                 tryBtn: false,
                 chapters: []
             }
